@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
+    console.log(props);
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -11,6 +12,7 @@ export const Register = (props) => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const history = useHistory()
+
 
     const handleRegister = (e) => {
         e.preventDefault()
