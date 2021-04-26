@@ -23,7 +23,10 @@ export const PostList = props => {
     }, [])
 
     useEffect(() => {
+        // sort posts by date
         const sortedPosts = posts.sort((a,b) => new Date(b.publicationDate) - new Date(a.publicationDate))
+        
+        // check and see if this is "my posts" or just all posts
         if (history.location.pathname.includes("/my")) {
             const thisUsersPosts = sortedPosts.filter(post => post.userId === userId)
             setUserPosts(thisUsersPosts)
