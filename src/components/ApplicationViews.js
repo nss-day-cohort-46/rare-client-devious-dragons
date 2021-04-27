@@ -10,6 +10,7 @@ import { CategoryList } from "./categories/CategoryList"
 import { CategoryForm } from "./categories/CategoryForm"
 import {TagList} from "./tags/TagList"
 import {TagProvider} from "./tags/TagProvider"
+import {CreateTag} from "./tags/CreateTag"
 
 
 export const ApplicationViews = () => {
@@ -42,6 +43,9 @@ export const ApplicationViews = () => {
                     <TagProvider>
                         <Route exact path="/tags">
                             <TagList />
+                        </Route>
+                        <Route path="/tags/create">
+                            <CreateTag />
                         </Route>
                     </TagProvider>
 
