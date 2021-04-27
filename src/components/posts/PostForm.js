@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from 'react-router-dom';
+import { CategoryContext } from "../categories/CategoryProvider";
 
 import { PostContext } from "./PostProvider";
 
 export const PostForm = () => {
     const { addPost, getPostById, updatePost } = useContext(PostContext)
+    const { categories, getCategories } = useContext(CategoryContext)
 
 //create empty state var to hold form values
     const [post, setPost] = useState({
         user_id: localStorage.getItem("rare_user_id"),
         title: "",
         content: "",
-        category: 1,
+        category_id: 0,
         publication_date: "",
         approved: ""
     })
@@ -39,9 +41,9 @@ export const PostForm = () => {
 
     //update state on every field change
     const handleControlledInputChange = (event) => {
-    const newPost = { ...post }
-    newPost[event.target.id] = event.target.value
-    setPost(newPost)
+        const newPost = { ...post }
+        newPost[event.target.id] = event.target.value
+        setPost(newPost)
     }
 
     const handleDeletePost = (event) => {
@@ -87,13 +89,21 @@ export const PostForm = () => {
         // .then(() => history.push(`/crew`))
         }else {
         //POST - add
-        debugger
+            // debugger
+    
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            let newdate = year + "/" + month + "/" + day;
+
         addPost({
             user_id: post.user_id,
             title: post.title,
             content: post.content,
-            publication_date: new Date(),
-            available: post.available
+            category_id: post.category_id,
+            publication_date: newdate,
+            approved: post.approved
         })
         .then(setPost({  //reset state obj as blank to zero out add form
             title: "",
@@ -107,15 +117,19 @@ export const PostForm = () => {
     }
 
     useEffect(() => {
-    if (postId) {
-        getPostById(postId)
-        .then(post => {
-            setPost(post)
+        getCategories()
+    }, [])
+
+    useEffect(() => {
+        if (postId) {
+            getPostById(postId)
+            .then(post => {
+                setPost(post)
+                setIsLoading(false)
+            })
+        } else {
             setIsLoading(false)
-        })
-    } else {
-        setIsLoading(false)
-    }
+        }
     },[postId])
 
     return (
@@ -143,6 +157,21 @@ export const PostForm = () => {
             onChange={handleControlledInputChange}
             value={post.content}/>
         </div>
+        </fieldset>
+
+        <fieldset>
+            <div className="form-group">
+            <label htmlFor="category_id">Category: </label>
+            <select value={post.category_id} id="category_id" className="form-control" 
+            onChange={handleControlledInputChange}>
+                <option value="0">Select a Category</option>
+                {categories.map(l => (
+                <option key={l.id} value={l.id}>
+                    {l.label}
+                </option>
+                ))}
+            </select>
+            </div>
         </fieldset>
 
         <fieldset>
