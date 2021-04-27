@@ -12,7 +12,7 @@ export const CommentForm = () => {
         authorId: parseInt(user),
         content: ""
     });
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
 
     
 
@@ -21,10 +21,10 @@ export const CommentForm = () => {
         newComment[event.target.id] = event.target.value
         // update state
         setComment(newComment)
+        
       }
 
     const handleSaveComment = () => {
-        setIsLoading(true)
 
         addComment({
             postId: parseInt(postId),
@@ -46,7 +46,7 @@ export const CommentForm = () => {
               </div>
           </fieldset>
           <button className="btn btn-primary"
-            disabled={isLoading}
+            // disabled={isLoading}
             onClick={event => {  
               event.preventDefault()
               handleSaveComment()
