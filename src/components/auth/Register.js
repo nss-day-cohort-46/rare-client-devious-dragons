@@ -20,8 +20,8 @@ export const Register = (props) => {
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
                 "username": email.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
+                "firstName": firstName.current.value,
+                "lastName": lastName.current.value,
                 "email": email.current.value,
                 "password": password.current.value
             }
