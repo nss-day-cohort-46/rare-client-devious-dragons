@@ -21,9 +21,16 @@ export const CategoryProvider = props => {
         })
     }
 
+    const deleteCategory = id => {
+        return fetch(`http://localhost:8088/categories/${id}`, {
+            method: "DELETE"
+        })
+            .then(getCategories)
+    }
+
     return (
         <CategoryContext.Provider value={{
-            categories, getCategories, addCategory
+            categories, getCategories, addCategory, deleteCategory
         }}>
             {props.children}
         </CategoryContext.Provider>

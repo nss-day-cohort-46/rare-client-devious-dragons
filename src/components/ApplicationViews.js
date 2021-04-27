@@ -25,11 +25,11 @@ export const ApplicationViews = () => {
 
 
 
-                    <Route path="/myposts">
+                    <Route exact path="/myposts">
                         <PostList />
                     </Route>
 
-                    <Route path="/posts">
+                    <Route exact path="/posts">
                         <PostList />
                     </Route>
 
