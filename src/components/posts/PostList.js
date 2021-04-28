@@ -15,13 +15,10 @@ export const PostList = props => {
     //=================================================================================//
 
     useEffect(() => {
-        getPosts()
+        getCategories()
+        .then(getPosts())
     }, [])
 
-    useEffect(() => {
-        getCategories()
-    }, [])
-    
     useEffect(() => {
         // sort posts by date
         const sortedPosts = posts.sort((a,b) => new Date(b.publicationDate) - new Date(a.publicationDate))
