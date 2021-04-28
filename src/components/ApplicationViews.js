@@ -8,6 +8,7 @@ import { PostDetail } from './posts/PostDetail'
 import { CategoryProvider } from "./categories/CategoryProvider"
 import { CategoryList } from "./categories/CategoryList"
 import { CategoryForm } from "./categories/CategoryForm"
+import { PostForm } from "./posts/PostForm"
 
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
@@ -38,7 +39,9 @@ export const ApplicationViews = () => {
                         <PostDetail />
                     </Route>
 
-
+                    <Route exact path="/posts/create">
+                        <PostForm />
+                    </Route>
 
                     <Route exact path="/myposts">
                         <PostList />
@@ -75,7 +78,6 @@ export const ApplicationViews = () => {
 
                     </CommentProvider>
                 </CategoryProvider>
-
             </PostProvider>
         </main>
     </>

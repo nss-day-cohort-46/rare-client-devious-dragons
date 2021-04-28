@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { PostCard } from './PostCard'
 import { PostContext } from './PostProvider'
+import { CategoryContext } from "../categories/CategoryProvider";
 
 export const PostList = props => {
     const { posts, getPosts } = useContext(PostContext)
@@ -10,16 +11,12 @@ export const PostList = props => {
     const history = useHistory()
 
     //=========================to be replaced with category fetch======================//
-    const categories = [
-        {
-            id: 1,
-            label: 'News'
-        }
-    ]
+    const { categories, getCategories } = useContext(CategoryContext)
     //=================================================================================//
 
     useEffect(() => {
-        getPosts()
+        getCategories()
+        .then(getPosts())
     }, [])
 
     useEffect(() => {
