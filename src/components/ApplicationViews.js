@@ -19,12 +19,9 @@ import { TagProvider } from "./tags/TagProvider"
 import { CreateTag } from "./tags/CreateTag"
 import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
-<<<<<<< HEAD
 import { UserDetail } from "./users/UserDetail"
-=======
 import { PostTags } from "./tags/PostTags"
 
->>>>>>> main
 
 
 
