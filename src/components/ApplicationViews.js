@@ -18,6 +18,7 @@ import { TagProvider } from "./tags/TagProvider"
 import { CreateTag } from "./tags/CreateTag"
 import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
+import { UserDetail } from "./users/UserDetail"
 
 
 
@@ -73,6 +74,10 @@ export const ApplicationViews = () => {
 
                             <Route exact path="/users">
                                 <UserList />
+                            </Route>
+
+                            <Route exact path="/users/:userId(\d+)">
+                                <UserDetail />
                             </Route>
 
                         </UserProvider>
