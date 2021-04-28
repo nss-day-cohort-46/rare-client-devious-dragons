@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router'
 import { TagContext } from './TagProvider'
 
 export const PostTags = () => {
-    const {tags, getTags} = useContext(TagContext)
+    const {tags, getTags, addPostTags} = useContext(TagContext)
    
 
     useEffect(() => {
@@ -11,6 +11,8 @@ export const PostTags = () => {
     }, [])
 
     const {postId} = useParams()
+
+    const history = useHistory()
     
     const [postTags, setPostTags] = useState ([
     ])
@@ -36,7 +38,8 @@ export const PostTags = () => {
     }
 
     const saveTagPost =()=> {
-        
+        postTags.map(pTag => addPostTags(pTag))
+        history.push(`/posts/detail/${postId}`)
     }
 
 
@@ -46,8 +49,11 @@ export const PostTags = () => {
         <>
             <h2>Choose from the following tags</h2>
             <section className="tag_select">
-                <div>{tags.map(t =><div><input type="checkbox" name ={`tag`} id="tagId" onChange={handleTagChange} value={t.id}></input><label htmlFor="tagId">{t.label}</label></div>)}</div>
-                <button className="save_postTag" onClick ={saveTagPost}></button>
+                <div>{tags.map(t => <div><input type="checkbox" name ={`tag`} id="tagId" onChange={handleTagChange} value={t.id}></input><label htmlFor="tagId">{t.label}</label></div>)}</div>
+                <button className="save_postTag" onClick ={event => {
+                    event.preventDefault()
+                    saveTagPost()
+                }}>Save Tags to Post</button>
             </section>
         </>
     )
