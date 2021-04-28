@@ -26,6 +26,9 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/categories">Categories</Link>
             </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/users">Users</Link>
+            </li>
             {
                 (localStorage.getItem("rare_user_id") !== null) ?
                     <li className="nav-item">
@@ -36,14 +39,15 @@ export const NavBar = () => {
                             }}
                         >Logout</button>
                     </li> :
-                    <>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </>
-            }        </ul>
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/register">Register</Link>
+                            </li>
+                        </>
+            }
+        </ul>
     )
 }
