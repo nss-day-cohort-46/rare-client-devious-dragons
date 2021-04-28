@@ -86,12 +86,9 @@ export const ApplicationViews = () => {
                                 <UserList />
                             </Route>
 
-<<<<<<< HEAD
                         <Route exact path="/users/:userId(\d+)">
                             <UserDetail />
                         </Route>
-=======
->>>>>>> main
 
                         </UserProvider>
                     </CommentProvider>
