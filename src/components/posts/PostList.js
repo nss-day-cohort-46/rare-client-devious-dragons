@@ -4,16 +4,18 @@ import { CategoryContext } from '../categories/CategoryProvider'
 import { PostCard } from './PostCard'
 import { PostContext } from './PostProvider'
 
+
 export const PostList = props => {
     const { posts, getPosts } = useContext(PostContext)
-    const { categories, getCategories } = useContext(CategoryContext)
     const [userPosts, setUserPosts] = useState([])
     const userId = parseInt(localStorage.getItem(`rare_user_id`))
     const history = useHistory()
 
+    //=========================to be replaced with category fetch======================//
+    const { categories, getCategories } = useContext(CategoryContext)
+    //=================================================================================//
 
     useEffect(() => {
-        getPosts()
         getCategories()
         .then(getPosts())
     }, [])
