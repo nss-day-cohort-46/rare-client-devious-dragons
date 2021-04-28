@@ -4,3 +4,10 @@
     margin-bottom: 10px;
     padding-left: 2%;
 }
+
+.userNameLink {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    width: fit-content;
+}
