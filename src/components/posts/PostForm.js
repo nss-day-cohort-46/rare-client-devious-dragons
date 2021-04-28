@@ -87,7 +87,7 @@ export const PostForm = () => {
             image_url: post.imageUrl,
             category_id: post.categoryId
         })
-        .then(() => history.push(`/crew`))
+        .then(() => history.push(`/posts/detail/${post.id}`))
         }else {
         //POST - add
             // debugger
@@ -166,7 +166,7 @@ export const PostForm = () => {
         <fieldset>
         <div className="form-group">
             <label htmlFor="image_url">Image: </label>
-            <input type="text" id="image_url" required className="form-control"
+            <input type="text" id="imageUrl" required className="form-control"
             placeholder="Image URL"
             onChange={handleControlledInputChange}
             value={post.imageUrl}/>

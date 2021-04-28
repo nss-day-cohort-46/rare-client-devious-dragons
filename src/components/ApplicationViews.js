@@ -35,10 +35,6 @@ export const ApplicationViews = () => {
                         </Route>
                         
 
-                    <Route exact path="/posts/detail/:postId(\d+)">
-                        <PostDetail />
-                    </Route>
-
                     <Route exact path="/posts/create">
                         <PostForm />
                     </Route>
@@ -54,11 +50,6 @@ export const ApplicationViews = () => {
                     <Route exact path="/posts">
                         <PostList />
                     </Route>
-
-                        <Route exact path="/posts">
-                            <PostList />
-                        </Route>
-
 
                         <Route exact path="/categories">
                             <CategoryList />
