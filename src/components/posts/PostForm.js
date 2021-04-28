@@ -10,12 +10,12 @@ export const PostForm = () => {
 
 //create empty state var to hold form values
     const [post, setPost] = useState({
-        user_id: localStorage.getItem("rare_user_id"),
+        userId: localStorage.getItem("rare_user_id"),
         title: "",
         content: "",
-        image_url: "",
-        category_id: 0,
-        publication_date: ""
+        imageUrl: "",
+        categoryId: 0,
+        publicationDate: ""
         // approved: ""
     })
 
@@ -91,20 +91,20 @@ export const PostForm = () => {
         .then(() => history.push(`/posts/detail/${post.id}`))
         }else {
         //POST - add
-            // debugger
-    
-            var dateObj = new Date();
-            var month = dateObj.getUTCMonth() + 1; //months from 1-12
-            var day = dateObj.getUTCDate();
-            var year = dateObj.getUTCFullYear();
-            let newdate = year + "/" + month + "/" + day;
-
+        
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        let newdate = year + "/" + month + "/" + day;
+        
+        // debugger
         addPost({
-            user_id: post.user_id,
+            user_id: post.userId,
             title: post.title,
             content: post.content,
-            image_url: post.image_url,
-            category_id: post.category_id,
+            image_url: post.imageUrl,
+            category_id: post.categoryId,
             publication_date: newdate
             // approved: post.approved
         })
@@ -176,7 +176,7 @@ export const PostForm = () => {
 
         <fieldset>
             <div className="form-group">
-            <label htmlFor="category_id">Category: </label>
+            <label htmlFor="categoryId">Category: </label>
             <select value={post.categoryId} id="categoryId" className="form-control" 
             onChange={handleControlledInputChange}>
                 <option value="0">Select a Category</option>
