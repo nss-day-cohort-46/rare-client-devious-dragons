@@ -11,15 +11,21 @@ export const UserList = () => {
     }, [])
 
     useEffect(() => {
-        
-
+        // Using the array.sort method to put these in alphabetical order
+        setSortedUsers(
+            users.sort( (a,b) => {
+                if (a.userName.toUpperCase() < b.userName.toUpperCase()) return -1
+                else if (a.userName.toUpperCase() > b.userName.toUpperCase()) return 1
+                return 0
+            })
+        )
     }, [users])
 
     return (
         <section className="users">
             <h1> Look at <a href="https://www.youtube.com/watch?v=NsLKQTh-Bqo">allllll those</a> Users</h1>
             {
-                users.map(user => {
+                sortedUsers.map(user => {
                     return <UserCard key={user.id} user={user} />
                 })
             }
