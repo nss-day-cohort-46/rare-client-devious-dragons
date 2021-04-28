@@ -13,12 +13,18 @@ import { PostForm } from "./posts/PostForm"
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
 
+
 import { TagList } from "./tags/TagList"
 import { TagProvider } from "./tags/TagProvider"
 import { CreateTag } from "./tags/CreateTag"
 import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
+<<<<<<< HEAD
 import { UserDetail } from "./users/UserDetail"
+=======
+import { PostTags } from "./tags/PostTags"
+
+>>>>>>> main
 
 
 
@@ -54,6 +60,13 @@ export const ApplicationViews = () => {
                                 <PostList />
                             </Route>
 
+                        <TagProvider>
+                            <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                <PostTags />
+                            </Route>
+                        </TagProvider>
+
+
                             <Route exact path="/categories">
                                 <CategoryList />
                             </Route>
@@ -76,9 +89,12 @@ export const ApplicationViews = () => {
                                 <UserList />
                             </Route>
 
+<<<<<<< HEAD
                             <Route exact path="/users/:userId(\d+)">
                                 <UserDetail />
                             </Route>
+=======
+>>>>>>> main
 
                         </UserProvider>
                     </CommentProvider>
