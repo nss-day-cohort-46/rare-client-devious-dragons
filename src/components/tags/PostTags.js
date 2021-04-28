@@ -4,6 +4,7 @@ import { TagContext } from './TagProvider'
 
 export const PostTags = () => {
     const {tags, getTags} = useContext(TagContext)
+   
 
     useEffect(() => {
         getTags()      
@@ -16,15 +17,15 @@ export const PostTags = () => {
         tagId: 0
     })
     
-    const tagArray = []
+    let tagArray = []
     
     const handleTagChange = (event) => {
         const newTag = {...postTags}
         newTag[event.target.id] = event.target.value
-        tagArray.push(newTag.tagId)
-        setPostTags(newTag)
+        tagArray.push(parseInt(newTag.tagId))
+        setPostTags(newTag) 
     }
-    console.log(tagArray)
+     console.log(tagArray)
     return (
         <>
             <h2>Choose from the following tags</h2>

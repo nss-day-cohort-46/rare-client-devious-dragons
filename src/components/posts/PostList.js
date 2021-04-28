@@ -1,25 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
+import { CategoryContext } from '../categories/CategoryProvider'
 import { PostCard } from './PostCard'
 import { PostContext } from './PostProvider'
 
 export const PostList = props => {
     const { posts, getPosts } = useContext(PostContext)
+    const { categories, getCategories } = useContext(CategoryContext)
     const [userPosts, setUserPosts] = useState([])
     const userId = parseInt(localStorage.getItem(`rare_user_id`))
     const history = useHistory()
 
-    //=========================to be replaced with category fetch======================//
-    const categories = [
-        {
-            id: 1,
-            label: 'News'
-        }
-    ]
-    //=================================================================================//
 
     useEffect(() => {
         getPosts()
+        getCategories()
+        .then(getPosts())
     }, [])
 
     useEffect(() => {
