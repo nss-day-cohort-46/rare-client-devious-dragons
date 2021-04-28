@@ -22,6 +22,7 @@ import { TagProvider } from "./tags/TagProvider"
 import { CreateTag } from "./tags/CreateTag"
 import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
+import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
 
 
@@ -37,60 +38,39 @@ export const ApplicationViews = () => {
             <PostProvider>
                 <CategoryProvider>
                     <CommentProvider>
-
-                        <Route exact path="/posts/detail/:postId(\d+)">
-                            <PostDetail />
-
-                            <CommentForm />
-                            <PostComments />
-                        </Route>
-
-                      
-                        
-
-                        <Route exact path="/posts/create">
-                            <PostForm />
-                        </Route>
-
-                        <Route exact path="/posts/detail/edit/:postId(\d+)">
-                            <PostForm />
-                        </Route>
-
-
-                        <TagProvider>
-                            <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                <PostTags />
-                            </Route>
-                        </TagProvider>
-
                         <UserProvider>
 
-                        
-
-
-     
-                           
+                            {/* //==================================Routes for Posts====================================// */}
+                            <Route exact path="/posts">
+                                <PostList />
+                            </Route>
 
                             <Route exact path="/posts/create">
                                 <PostForm />
                             </Route>
 
+                            <Route exact path="/posts/detail/:postId(\d+)">
+                                <PostDetail />
+                                <CommentForm />
+                                <PostComments />
+                            </Route>
+
+
+                            <Route exact path="/posts/detail/edit/:postId(\d+)">
+                                <PostForm />
+                            </Route>
 
                             <Route exact path="/myposts">
                                 <PostList />
                             </Route>
 
-                            <Route exact path="/posts">
-                                <PostList />
-                            </Route>
+                            <TagProvider>
+                                <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                    <PostTags />
+                                </Route>
+                            </TagProvider>
 
-                        <TagProvider>
-                            <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                <PostTags />
-                            </Route>
-                        </TagProvider>
-
-
+                            {/* //==================================Routes for Categories====================================// */}
                             <Route exact path="/categories">
                                 <CategoryList />
                             </Route>
@@ -99,6 +79,7 @@ export const ApplicationViews = () => {
                                 <CategoryForm />
                             </Route>
 
+                            {/* //==================================Routes for Tags====================================// */}
                             <TagProvider>
                                 <Route exact path="/tags">
                                     <TagList />
@@ -108,11 +89,14 @@ export const ApplicationViews = () => {
                                 </Route>
                             </TagProvider>
 
-
+                            {/* //==================================Routes for Users====================================// */}
                             <Route exact path="/users">
                                 <UserList />
                             </Route>
 
+                            <Route exact path="/users/:userId(\d+)">
+                                <UserDetail />
+                            </Route>
 
                         </UserProvider>
                     </CommentProvider>
