@@ -57,11 +57,11 @@ export const ApplicationViews = () => {
                                 <PostList />
                             </Route>
 
-                        <TagProvider>
-                            <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                <PostTags />
-                            </Route>
-                        </TagProvider>
+                            <TagProvider>
+                                <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                    <PostTags />
+                                </Route>
+                            </TagProvider>
 
 
                             <Route exact path="/categories">
@@ -87,9 +87,9 @@ export const ApplicationViews = () => {
                             </Route>
 
 <<<<<<< HEAD
-                            <Route exact path="/users/:userId(\d+)">
-                                <UserDetail />
-                            </Route>
+                        <Route exact path="/users/:userId(\d+)">
+                            <UserDetail />
+                        </Route>
 =======
 >>>>>>> main
 
@@ -97,6 +97,6 @@ export const ApplicationViews = () => {
                     </CommentProvider>
                 </CategoryProvider>
             </PostProvider>
-        </main>
+    </main>
     </>
 }
