@@ -21,10 +21,10 @@ export const PostTags = () => {
     const handleTagChange = (event) => {
         const newTag = {...postTags}
         newTag[event.target.id] = event.target.value
-        tagArray.push(tag.tagId)
+        tagArray.push(newTag.tagId)
         setPostTags(newTag)
     }
-
+    console.log(tagArray)
     return (
         <>
             <h2>Choose from the following tags</h2>
