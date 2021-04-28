@@ -61,6 +61,9 @@ export const ApplicationViews = () => {
                             <Route path="/tags/create">
                                 <CreateTag />
                             </Route>
+                            <Route path="/tags/edit/:tagId(\d+)">
+                                <CreateTag />
+                            </Route>
                         </TagProvider>
 
                         <Route path="/categories/create">

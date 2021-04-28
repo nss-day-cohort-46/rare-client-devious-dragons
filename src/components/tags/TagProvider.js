@@ -4,6 +4,7 @@ export const TagContext = createContext()
 
 export const TagProvider = props => {
     const [tags, setTags] = useState([])
+    const [tagById, setTagById] = useState({})
     
     const getTags = () => {
         return fetch(`http://localhost:8088/tags`)
@@ -41,9 +42,34 @@ export const TagProvider = props => {
                 
     }
 
+    const tagDelete = (tagId) => {
+        return fetch(`http://localhost:8088/tags/${tagId}`, {
+            method: "DELETE"
+        })
+            .then(getTags)
+    }
+
+    const updateTag = tag => {
+        return fetch(`http://localhost:8088/tags/${tag}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(tag)
+        })
+          .then(getTags)
+      }
+
+      const getTagById = (id) => {
+        return fetch(`http://localhost:8088/tags/${id}`)
+            .then(res => res.json())
+            .then(setTagById)
+    }
+
+
     return (
         <TagContext.Provider value={{
-            tags, getTags, getPostTags, addTag, addPostTags
+            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById, tagById
         }}>
             {props.children}
         </TagContext.Provider>
