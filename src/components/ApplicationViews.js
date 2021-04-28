@@ -12,7 +12,7 @@ import { PostForm } from "./posts/PostForm"
 
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
-
+import { PostComments } from './comments/PostComments'
 import {TagList} from "./tags/TagList"
 import {TagProvider} from "./tags/TagProvider"
 import {CreateTag} from "./tags/CreateTag"
@@ -31,13 +31,8 @@ export const ApplicationViews = () => {
                         <Route exact path="/posts/detail/:postId(\d+)">
                             <PostDetail />
                             <CommentForm />
+                            <PostComments />
                         </Route>
-                        
-
-
-                    <Route exact path="/posts/detail/:postId(\d+)">
-                        <PostDetail />
-                    </Route>
 
                     <Route exact path="/posts/create">
                         <PostForm />
@@ -50,10 +45,6 @@ export const ApplicationViews = () => {
                     <Route exact path="/posts">
                         <PostList />
                     </Route>
-
-                        <Route exact path="/posts">
-                            <PostList />
-                        </Route>
 
 
                         <Route exact path="/categories">
