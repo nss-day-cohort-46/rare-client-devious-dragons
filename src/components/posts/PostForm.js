@@ -5,7 +5,7 @@ import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 
 export const PostForm = () => {
-    const { addPost, getPostById, updatePost } = useContext(PostContext)
+    const { addPost, getPostById, updatePost, deletePost } = useContext(PostContext)
     const { categories, getCategories } = useContext(CategoryContext)
 
 //create empty state var to hold form values
@@ -49,10 +49,11 @@ export const PostForm = () => {
 
     const handleDeletePost = (event) => {
     if(window.confirm("Are you sure?")===true){
-        // deletePost(event.target.id)
-        // .then(() => {
-        // history.push("/crew")
-        // })
+// debugger
+        deletePost(event.target.id)
+        .then(() => {
+        history.push("/posts")
+        })
     }
     }
 
