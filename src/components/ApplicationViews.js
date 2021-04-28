@@ -13,11 +13,14 @@ import { PostForm } from "./posts/PostForm"
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
 
+
 import { TagList } from "./tags/TagList"
 import { TagProvider } from "./tags/TagProvider"
 import { CreateTag } from "./tags/CreateTag"
 import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
+import { PostTags } from "./tags/PostTags"
+
 
 
 
@@ -53,6 +56,13 @@ export const ApplicationViews = () => {
                                 <PostList />
                             </Route>
 
+                        <TagProvider>
+                            <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                <PostTags />
+                            </Route>
+                        </TagProvider>
+
+
                             <Route exact path="/categories">
                                 <CategoryList />
                             </Route>
@@ -74,6 +84,7 @@ export const ApplicationViews = () => {
                             <Route exact path="/users">
                                 <UserList />
                             </Route>
+
 
                         </UserProvider>
                     </CommentProvider>
