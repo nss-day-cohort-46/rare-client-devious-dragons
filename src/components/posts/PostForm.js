@@ -78,16 +78,16 @@ export const PostForm = () => {
 
         //if params has postId then UPDATE else ADD
         if (postId){
-        //PUT - update
-        // updateCrew({
-        //     id: post.id,
-        //     firstName: post.firstName,
-        //     lastName: post.lastName,
-        //     title: post.title,
-        //     crewTypeId: parseInt(post.crewTypeId),
-        //     available: post.available
-        // })
-        // .then(() => history.push(`/crew`))
+        // PUT - update
+        updatePost({
+            id: post.id,
+            user_id: post.userId,
+            title: post.title,
+            content: post.content,
+            image_url: post.imageUrl,
+            category_id: post.categoryId
+        })
+        .then(() => history.push(`/crew`))
         }else {
         //POST - add
             // debugger
@@ -110,7 +110,8 @@ export const PostForm = () => {
         .then(setPost({  //reset state obj as blank to zero out add form
             title: "",
             content: "",
-            image_url: ""
+            image_url: "",
+            category_id: 0
             // available: true
         }))
         .then(setIsLoading(false))
@@ -168,14 +169,14 @@ export const PostForm = () => {
             <input type="text" id="image_url" required className="form-control"
             placeholder="Image URL"
             onChange={handleControlledInputChange}
-            value={post.image_url}/>
+            value={post.imageUrl}/>
         </div>
         </fieldset>
 
         <fieldset>
             <div className="form-group">
             <label htmlFor="category_id">Category: </label>
-            <select value={post.category_id} id="category_id" className="form-control" 
+            <select value={post.categoryId} id="categoryId" className="form-control" 
             onChange={handleControlledInputChange}>
                 <option value="0">Select a Category</option>
                 {categories.map(l => (

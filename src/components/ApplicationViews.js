@@ -28,12 +28,12 @@ export const ApplicationViews = () => {
             <PostProvider>
                 <CategoryProvider>
                     <CommentProvider>
+
                         <Route exact path="/posts/detail/:postId(\d+)">
                             <PostDetail />
                             <CommentForm />
                         </Route>
                         
-
 
                     <Route exact path="/posts/detail/:postId(\d+)">
                         <PostDetail />
@@ -42,6 +42,10 @@ export const ApplicationViews = () => {
                     <Route exact path="/posts/create">
                         <PostForm />
                     </Route>
+
+                    <Route exact path="/posts/detail/edit/:postId(\d+)">
+                        <PostForm />
+                        </Route>
 
                     <Route exact path="/myposts">
                         <PostList />
