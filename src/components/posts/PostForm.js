@@ -13,9 +13,10 @@ export const PostForm = () => {
         user_id: localStorage.getItem("rare_user_id"),
         title: "",
         content: "",
+        image_url: "",
         category_id: 0,
-        publication_date: "",
-        approved: ""
+        publication_date: ""
+        // approved: ""
     })
 
     //create state var to stop quick clicks on edits
@@ -77,16 +78,16 @@ export const PostForm = () => {
 
         //if params has postId then UPDATE else ADD
         if (postId){
-        //PUT - update
-        // updateCrew({
-        //     id: post.id,
-        //     firstName: post.firstName,
-        //     lastName: post.lastName,
-        //     title: post.title,
-        //     crewTypeId: parseInt(post.crewTypeId),
-        //     available: post.available
-        // })
-        // .then(() => history.push(`/crew`))
+        // PUT - update
+        updatePost({
+            id: post.id,
+            user_id: post.userId,
+            title: post.title,
+            content: post.content,
+            image_url: post.imageUrl,
+            category_id: post.categoryId
+        })
+        .then(() => history.push(`/posts/detail/${post.id}`))
         }else {
         //POST - add
             // debugger
@@ -101,14 +102,17 @@ export const PostForm = () => {
             user_id: post.user_id,
             title: post.title,
             content: post.content,
+            image_url: post.image_url,
             category_id: post.category_id,
-            publication_date: newdate,
-            approved: post.approved
+            publication_date: newdate
+            // approved: post.approved
         })
         .then(setPost({  //reset state obj as blank to zero out add form
             title: "",
             content: "",
-            available: true
+            image_url: "",
+            category_id: 0
+            // available: true
         }))
         .then(setIsLoading(false))
         .then(() => history.push("/posts"))
@@ -160,9 +164,19 @@ export const PostForm = () => {
         </fieldset>
 
         <fieldset>
+        <div className="form-group">
+            <label htmlFor="image_url">Image: </label>
+            <input type="text" id="imageUrl" required className="form-control"
+            placeholder="Image URL"
+            onChange={handleControlledInputChange}
+            value={post.imageUrl}/>
+        </div>
+        </fieldset>
+
+        <fieldset>
             <div className="form-group">
             <label htmlFor="category_id">Category: </label>
-            <select value={post.category_id} id="category_id" className="form-control" 
+            <select value={post.categoryId} id="categoryId" className="form-control" 
             onChange={handleControlledInputChange}>
                 <option value="0">Select a Category</option>
                 {categories.map(l => (
@@ -174,7 +188,7 @@ export const PostForm = () => {
             </div>
         </fieldset>
 
-        <fieldset>
+        {/* <fieldset>
         <div className="form-group">
         
         <label htmlFor="approved">Approved:&nbsp;</label>
@@ -187,7 +201,7 @@ export const PostForm = () => {
         />
         
         </div>
-        </fieldset>
+        </fieldset> */}
 
         <button className=""
         type="submit"

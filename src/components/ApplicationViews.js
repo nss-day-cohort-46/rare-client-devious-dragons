@@ -13,6 +13,9 @@ import { PostForm } from "./posts/PostForm"
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
 
+import { PostComments } from './comments/PostComments'
+
+
 
 import { TagList } from "./tags/TagList"
 import { TagProvider } from "./tags/TagProvider"
@@ -21,6 +24,7 @@ import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
+
 
 
 
@@ -36,20 +40,27 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <UserProvider>
 
-                            <Route exact path="/posts/detail/:postId(\d+)">
-                                <PostDetail />
-                                <CommentForm />
+                            {/* //==================================Routes for Posts====================================// */}
+                            <Route exact path="/posts">
+                                <PostList />
                             </Route>
 
                             <Route exact path="/posts/create">
                                 <PostForm />
                             </Route>
 
-                            <Route exact path="/myposts">
-                                <PostList />
+                            <Route exact path="/posts/detail/:postId(\d+)">
+                                <PostDetail />
+                                <CommentForm />
+                                <PostComments />
                             </Route>
 
-                            <Route exact path="/posts">
+
+                            <Route exact path="/posts/detail/edit/:postId(\d+)">
+                                <PostForm />
+                            </Route>
+
+                            <Route exact path="/myposts">
                                 <PostList />
                             </Route>
 
@@ -59,7 +70,7 @@ export const ApplicationViews = () => {
                                 </Route>
                             </TagProvider>
 
-
+                            {/* //==================================Routes for Categories====================================// */}
                             <Route exact path="/categories">
                                 <CategoryList />
                             </Route>
@@ -68,6 +79,7 @@ export const ApplicationViews = () => {
                                 <CategoryForm />
                             </Route>
 
+                            {/* //==================================Routes for Tags====================================// */}
                             <TagProvider>
                                 <Route exact path="/tags">
                                     <TagList />
@@ -77,7 +89,7 @@ export const ApplicationViews = () => {
                                 </Route>
                             </TagProvider>
 
-
+                            {/* //==================================Routes for Users====================================// */}
                             <Route exact path="/users">
                                 <UserList />
                             </Route>
