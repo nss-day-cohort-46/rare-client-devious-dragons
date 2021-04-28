@@ -6,6 +6,7 @@ import { PostContext } from './PostProvider'
 export const PostDetail = () => {
     const { getPostById } = useContext(PostContext);
     const [postDetail, setPostDetail] = useState({})
+    const userId = parseInt(localStorage.getItem(`rare_user_id`))
     const {postId} = useParams();
     const history = useHistory();
 
@@ -27,7 +28,11 @@ export const PostDetail = () => {
             <section className="content">{postDetail.content}</section>
         </article>
         <div className="manage_tags">
-            <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button>
+            { userId === postDetail.userId ?
+                <section>
+                    <div>Tags: {postDetail.tags.map(tag => tag.label).join(", ")}</div>
+                <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button></section>
+            : <></>}  
         </div>
     
     </>
