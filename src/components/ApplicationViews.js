@@ -10,6 +10,14 @@ import { CategoryList } from "./categories/CategoryList"
 import { CategoryForm } from "./categories/CategoryForm"
 import { PostForm } from "./posts/PostForm"
 
+import { CommentForm } from './comments/CommentForm'
+import { CommentProvider } from './comments/CommentProvider'
+
+import {TagList} from "./tags/TagList"
+import {TagProvider} from "./tags/TagProvider"
+import {CreateTag} from "./tags/CreateTag"
+
+
 
 export const ApplicationViews = () => {
     return <>
@@ -19,6 +27,13 @@ export const ApplicationViews = () => {
         }}>
             <PostProvider>
                 <CategoryProvider>
+                    <CommentProvider>
+                        <Route exact path="/posts/detail/:postId(\d+)">
+                            <PostDetail />
+                            <CommentForm />
+                        </Route>
+                        
+
 
                     <Route exact path="/posts/detail/:postId(\d+)">
                         <PostDetail />
@@ -28,7 +43,7 @@ export const ApplicationViews = () => {
                         <PostForm />
                     </Route>
 
-                    <Route path="/myposts">
+                    <Route exact path="/myposts">
                         <PostList />
                     </Route>
 
@@ -36,15 +51,32 @@ export const ApplicationViews = () => {
                         <PostList />
                     </Route>
 
-                    <Route exact path="/categories">
-                        <CategoryList />
-                    </Route>
+                        <Route exact path="/posts">
+                            <PostList />
+                        </Route>
+
+
+                        <Route exact path="/categories">
+                            <CategoryList />
+                        </Route>
+
+                    <TagProvider>
+                        <Route exact path="/tags">
+                            <TagList />
+                        </Route>
+                        <Route path="/tags/create">
+                            <CreateTag />
+                        </Route>
+                    </TagProvider>
 
                     <Route path="/categories/create">
                         <CategoryForm />
                     </Route>
 
 
+                       
+
+                    </CommentProvider>
                 </CategoryProvider>
             </PostProvider>
         </main>
