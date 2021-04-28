@@ -16,6 +16,7 @@ import { CommentProvider } from './comments/CommentProvider'
 import {TagList} from "./tags/TagList"
 import {TagProvider} from "./tags/TagProvider"
 import {CreateTag} from "./tags/CreateTag"
+import { PostTags } from "./tags/PostTags"
 
 
 
@@ -31,45 +32,47 @@ export const ApplicationViews = () => {
 
                         <Route exact path="/posts/detail/:postId(\d+)">
                             <PostDetail />
-                            <CommentForm />
                         </Route>
                         
 
-                    <Route exact path="/posts/create">
-                        <PostForm />
-                    </Route>
-
-                    <Route exact path="/posts/detail/edit/:postId(\d+)">
-                        <PostForm />
+                        <Route exact path="/posts/create">
+                            <PostForm />
                         </Route>
 
-                    <Route exact path="/myposts">
-                        <PostList />
-                    </Route>
+                        <Route exact path="/posts/detail/edit/:postId(\d+)">
+                            <PostForm />
+                        </Route>
 
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
+                        <TagProvider>
+                            <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                <PostTags />
+                            </Route>
+                        </TagProvider>
+
+                        <Route exact path="/myposts">
+                            <PostList />
+                        </Route>
+
+                        <Route exact path="/posts">
+                            <PostList />
+                        </Route>
 
                         <Route exact path="/categories">
                             <CategoryList />
                         </Route>
 
-                    <TagProvider>
-                        <Route exact path="/tags">
-                            <TagList />
+                        <TagProvider>
+                            <Route exact path="/tags">
+                                <TagList />
+                            </Route>
+                            <Route path="/tags/create">
+                                <CreateTag />
+                            </Route>
+                        </TagProvider>
+
+                        <Route path="/categories/create">
+                            <CategoryForm />
                         </Route>
-                        <Route path="/tags/create">
-                            <CreateTag />
-                        </Route>
-                    </TagProvider>
-
-                    <Route path="/categories/create">
-                        <CategoryForm />
-                    </Route>
-
-
-                       
 
                     </CommentProvider>
                 </CategoryProvider>
