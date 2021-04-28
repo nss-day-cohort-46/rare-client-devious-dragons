@@ -13,9 +13,10 @@ export const PostForm = () => {
         user_id: localStorage.getItem("rare_user_id"),
         title: "",
         content: "",
+        image_url: "",
         category_id: 0,
-        publication_date: "",
-        approved: ""
+        publication_date: ""
+        // approved: ""
     })
 
     //create state var to stop quick clicks on edits
@@ -101,14 +102,16 @@ export const PostForm = () => {
             user_id: post.user_id,
             title: post.title,
             content: post.content,
+            image_url: post.image_url,
             category_id: post.category_id,
-            publication_date: newdate,
-            approved: post.approved
+            publication_date: newdate
+            // approved: post.approved
         })
         .then(setPost({  //reset state obj as blank to zero out add form
             title: "",
             content: "",
-            available: true
+            image_url: ""
+            // available: true
         }))
         .then(setIsLoading(false))
         .then(() => history.push("/posts"))
@@ -160,6 +163,16 @@ export const PostForm = () => {
         </fieldset>
 
         <fieldset>
+        <div className="form-group">
+            <label htmlFor="image_url">Image: </label>
+            <input type="text" id="image_url" required className="form-control"
+            placeholder="Image URL"
+            onChange={handleControlledInputChange}
+            value={post.image_url}/>
+        </div>
+        </fieldset>
+
+        <fieldset>
             <div className="form-group">
             <label htmlFor="category_id">Category: </label>
             <select value={post.category_id} id="category_id" className="form-control" 
@@ -174,7 +187,7 @@ export const PostForm = () => {
             </div>
         </fieldset>
 
-        <fieldset>
+        {/* <fieldset>
         <div className="form-group">
         
         <label htmlFor="approved">Approved:&nbsp;</label>
@@ -187,7 +200,7 @@ export const PostForm = () => {
         />
         
         </div>
-        </fieldset>
+        </fieldset> */}
 
         <button className=""
         type="submit"
