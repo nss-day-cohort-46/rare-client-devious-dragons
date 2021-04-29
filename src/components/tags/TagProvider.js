@@ -50,7 +50,7 @@ export const TagProvider = props => {
     }
 
     const updateTag = tag => {
-        return fetch(`http://localhost:8088/tags/${tag}`, {
+        return fetch(`http://localhost:8088/tags/${tag.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
