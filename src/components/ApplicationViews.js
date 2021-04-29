@@ -25,6 +25,7 @@ import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
 import { PostSearch } from "./posts/PostSearch"
+import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
 
 
 
@@ -40,66 +41,76 @@ export const ApplicationViews = () => {
                 <CategoryProvider>
                     <CommentProvider>
                         <UserProvider>
+                            <SubscriptionProvider>
 
                             {/* //==================================Routes for Posts====================================// */}
-                            <Route exact path="/posts">
-                                <PostSearch />
-                                <PostList />
-                            </Route>
+                                <Route exact path="/posts">
+                                    <PostSearch />
+                                    <PostList />
+                                </Route>
 
-                            <Route exact path="/posts/create">
-                                <PostForm />
-                            </Route>
+                                <Route exact path="/posts/create">
+                                    <PostForm />
+                                </Route>
 
-                            <Route exact path="/posts/detail/:postId(\d+)">
-                                <PostDetail />
+                                <Route exact path="/posts/detail/:postId(\d+)">
+                                    <PostDetail />
+                                    <CommentForm />
+                                    <PostComments />
+                                </Route>
+
+
+                                <Route exact path="/posts/detail/edit/:postId(\d+)">
+                                    <PostForm />
+                                </Route>
+
+                            <Route exact path="/posts/detail/editcomment/:commentId(\d+)">
                                 <CommentForm />
-                                <PostComments />
                             </Route>
 
-
-                            <Route exact path="/posts/detail/edit/:postId(\d+)">
-                                <PostForm />
-                            </Route>
-
-                            <Route exact path="/myposts">
-                                <PostList />
-                            </Route>
-
-                            <TagProvider>
-                                <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                    <PostTags />
+                                <Route exact path="/myposts">
+                                    <PostList />
                                 </Route>
-                            </TagProvider>
 
-                            {/* //==================================Routes for Categories====================================// */}
-                            <Route exact path="/categories">
-                                <CategoryList />
-                            </Route>
 
-                            <Route path="/categories/create">
-                                <CategoryForm />
-                            </Route>
 
-                            {/* //==================================Routes for Tags====================================// */}
-                            <TagProvider>
-                                <Route exact path="/tags">
-                                    <TagList />
+                                {/* //==================================Routes for Categories====================================// */}
+                                <Route exact path="/categories">
+                                    <CategoryList />
                                 </Route>
-                                <Route path="/tags/create">
-                                    <CreateTag />
+
+
+                                <Route path="/categories/create">
+                                    <CategoryForm />
                                 </Route>
-                            </TagProvider>
 
-                            {/* //==================================Routes for Users====================================// */}
-                            <Route exact path="/users">
-                                <UserList />
-                            </Route>
+                                {/* //==================================Routes for Tags====================================// */}
+                                <TagProvider>
 
-                            <Route exact path="/users/:userId(\d+)">
-                                <UserDetail />
-                            </Route>
+                                    <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                        <PostTags />
+                                    </Route>
+                                    <Route exact path="/tags">
+                                        <TagList />
+                                    </Route>
+                                    <Route path="/tags/create">
+                                        <CreateTag />
+                                    </Route>
+                                    <Route path="/tags/edit/:tagId(\d+)">
+                                        <CreateTag />
+                                    </Route>
+                                </TagProvider>
 
+                                {/* //==================================Routes for Users====================================// */}
+                                <Route exact path="/users">
+                                    <UserList />
+                                </Route>
+
+                                <Route exact path="/users/:userId(\d+)">
+                                    <UserDetail />
+                                </Route>
+
+                            </SubscriptionProvider>
                         </UserProvider>
                     </CommentProvider>
                 </CategoryProvider>
