@@ -1,11 +1,12 @@
 import React, { useState, createContext } from "react"
-
+import { useParams } from 'react-router-dom'
 export const CommentContext = createContext()
 
 // This component establishes what data can be used.
 export const CommentProvider = (props) => {
+    const { postId, commentId } = useParams()
     const [comments, setComments] = useState([])
-    
+    const [postComments, setPostComments] = useState([])
 
     const getComments = () => {
         return fetch("http://localhost:8088/comments")
@@ -27,6 +28,7 @@ export const CommentProvider = (props) => {
     const getCommentsByPostId = (postId) =>{
         return fetch(`http://localhost:8088/comments?postId=${postId}`)
         .then(res => res.json())
+        .then(setPostComments)
     }
     
     const getCommentById = (id) => {
@@ -34,11 +36,11 @@ export const CommentProvider = (props) => {
             .then(res => res.json())
     }
 
-    const deleteComment = commentId => {
+    const deleteComment = (commentId, postId) => {
         return fetch(`http://localhost:8088/comments/${commentId}`, {
             method: "DELETE"
         })
-            .then(getComments)
+          .then(() => getCommentsByPostId(postId))  
     }
 
     const updateComment = comment => {
@@ -60,7 +62,7 @@ export const CommentProvider = (props) => {
     */
     return (
         <CommentContext.Provider value={{
-            comments, getComments, addComment, getCommentById, updateComment, deleteComment, getCommentsByPostId
+            comments, getComments, addComment, getCommentById, updateComment, deleteComment, getCommentsByPostId, postComments, setPostComments
         }}>
             {props.children}
         </CommentContext.Provider>
