@@ -11,3 +11,13 @@
     cursor: pointer;
     width: fit-content;
 }
+
+.userCard{
+    display: flex;
+    flex-direction: column;
+}
+
+.subscribeButton, .unsubscribeButton, .thisIsYou {
+    align-self: flex-end;
+    margin: 0 10px 10px 0;
+}
