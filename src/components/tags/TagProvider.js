@@ -4,6 +4,8 @@ export const TagContext = createContext()
 
 export const TagProvider = props => {
     const [tags, setTags] = useState([])
+
+
     
     
     const getTags = () => {
@@ -26,8 +28,7 @@ export const TagProvider = props => {
 
     const getPostTags = () => {
         return fetch(`http://localhost:8088/postTags`)
-            .then(res => res.json())
-            
+            .then(res => res.j)
     }
     
     const addPostTags = (tagObj) => {
@@ -66,10 +67,18 @@ export const TagProvider = props => {
             
     }
 
+    // const postTagDelete = (postTagId) => {
+    //     return fetch(`http://localhost:8088/postTags/${postTagId}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(getTags)
+    // }
+
 
     return (
         <TagContext.Provider value={{
-            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById
+            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, 
+            updateTag, getTagById
         }}>
             {props.children}
         </TagContext.Provider>
