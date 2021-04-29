@@ -13,10 +13,19 @@ import { PostForm } from "./posts/PostForm"
 import { CommentForm } from './comments/CommentForm'
 import { CommentProvider } from './comments/CommentProvider'
 
-import {TagList} from "./tags/TagList"
-import {TagProvider} from "./tags/TagProvider"
-import {CreateTag} from "./tags/CreateTag"
+import { PostComments } from './comments/PostComments'
+
+
+
+import { TagList } from "./tags/TagList"
+import { TagProvider } from "./tags/TagProvider"
+import { CreateTag } from "./tags/CreateTag"
+import { UserProvider } from "./users/UserProvider"
+import { UserList } from "./users/UserList"
+import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
+
+
 
 
 
@@ -29,50 +38,70 @@ export const ApplicationViews = () => {
             <PostProvider>
                 <CategoryProvider>
                     <CommentProvider>
-                        <Route exact path="/posts/detail/:postId(\d+)">
-                            <PostDetail />
-                        </Route>
-                        <TagProvider>
-                            <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                <PostTags />
+                        <UserProvider>
+
+                            {/* //==================================Routes for Posts====================================// */}
+                            <Route exact path="/posts">
+                                <PostList />
                             </Route>
-                        </TagProvider>
 
-                        <Route exact path="/posts/create">
-                            <PostForm />
-                        </Route>
-
-                        <Route exact path="/myposts">
-                            <PostList />
-                        </Route>
-
-                        <Route exact path="/posts">
-                            <PostList />
-                        </Route>
-
-                        <Route exact path="/categories">
-                            <CategoryList />
-                        </Route>
-
-                        <TagProvider>
-                            <Route exact path="/tags">
-                                <TagList />
+                            <Route exact path="/posts/create">
+                                <PostForm />
                             </Route>
-                            <Route path="/tags/create">
-                                <CreateTag />
+
+                            <Route exact path="/posts/detail/:postId(\d+)">
+                                <PostDetail />
+                                <CommentForm />
+                                <PostComments />
                             </Route>
-                            <Route path="/tags/edit/:tagId(\d+)">
-                                <CreateTag />
+
+
+                            <Route exact path="/posts/detail/edit/:postId(\d+)">
+                                <PostForm />
                             </Route>
-                        </TagProvider>
 
-                        <Route path="/categories/create">
-                            <CategoryForm />
-                        </Route>
+                            <Route exact path="/myposts">
+                                <PostList />
+                            </Route>
 
 
-                       
+                            {/* //==================================Routes for Categories====================================// */}
+                            <Route exact path="/categories">
+                                <CategoryList />
+                            </Route>
+                        
 
+                            <Route path="/categories/create">
+                                <CategoryForm />
+                            </Route>
+
+                            {/* //==================================Routes for Tags====================================// */}
+                            <TagProvider>
+                            
+                                <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                    <PostTags />
+                                </Route>
+                                <Route exact path="/tags">
+                                    <TagList />
+                                </Route>
+                                <Route path="/tags/create">
+                                    <CreateTag />
+                                </Route>
+                                <Route path="/tags/edit/:tagId(\d+)">
+                                    <CreateTag />
+                                </Route>
+                            </TagProvider>
+
+                            {/* //==================================Routes for Users====================================// */}
+                            <Route exact path="/users">
+                                <UserList />
+                            </Route>
+
+                            <Route exact path="/users/:userId(\d+)">
+                                <UserDetail />
+                            </Route>
+
+                        </UserProvider>
                     </CommentProvider>
                 </CategoryProvider>
             </PostProvider>
