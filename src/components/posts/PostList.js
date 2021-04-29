@@ -30,10 +30,10 @@ export const PostList = props => {
     useEffect(() => {
         if (searchTerms !== "") {
             const subset = posts.filter(post => post.title.toLowerCase().includes(searchTerms.toLowerCase()))
-            setFiltered(subset)
+            setUserPosts(subset)
         } else {
             // If the search field is blank, display all animals
-            setFiltered(posts)
+            setUserPosts(posts)
         }
         }, [searchTerms, posts])
 
