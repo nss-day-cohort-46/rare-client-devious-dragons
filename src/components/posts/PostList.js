@@ -33,9 +33,41 @@ export const PostList = props => {
         }
     }, [posts])
 
+    const handleControlledInputChange = (event) => {
+        const sortedPostsCat = posts.sort((a,b) => new Date(b.publicationDate) - new Date(a.publicationDate))
+        let sortVar = parseInt(event.target.value)
+        // console.log(sortVar);
+        
+        if (sortVar===0) {
+            // console.log("Not sorted");
+            setUserPosts(sortedPostsCat)
+        }else{
+            // console.log("Sorted");
+            const thisUsersPosts = sortedPostsCat.filter(post => post.categoryId === sortVar)
+            setUserPosts(thisUsersPosts)
+        }
+    }
+
     return (
         <section className="posts">
             <h2>My Posts</h2>
+
+            <fieldset>
+            <div className="form-group">
+            {/* <label htmlFor="categoryId">Category: </label> */}
+            <select value={posts.categoryId} id="categoryId" className="form-control" 
+            onChange={handleControlledInputChange}>
+                <option value="0">All Categories</option>
+                {categories.map(l => (
+                <option key={l.id} value={l.id}>
+                    {l.label}
+                </option>
+                ))}
+            </select>
+            </div>
+        </fieldset>
+
+
             {
                 userPosts.map(post => <PostCard 
                                         key={post.id}
