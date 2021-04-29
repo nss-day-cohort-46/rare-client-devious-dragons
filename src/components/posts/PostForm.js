@@ -5,17 +5,18 @@ import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 
 export const PostForm = () => {
-    const { addPost, getPostById, updatePost } = useContext(PostContext)
+    const { addPost, getPostById, updatePost, deletePost } = useContext(PostContext)
     const { categories, getCategories } = useContext(CategoryContext)
 
 //create empty state var to hold form values
     const [post, setPost] = useState({
-        user_id: localStorage.getItem("rare_user_id"),
+        userId: localStorage.getItem("rare_user_id"),
         title: "",
         content: "",
-        category_id: 0,
-        publication_date: "",
-        approved: ""
+        imageUrl: "",
+        categoryId: 0,
+        publicationDate: ""
+        // approved: ""
     })
 
     //create state var to stop quick clicks on edits
@@ -48,10 +49,11 @@ export const PostForm = () => {
 
     const handleDeletePost = (event) => {
     if(window.confirm("Are you sure?")===true){
-        // deletePost(event.target.id)
-        // .then(() => {
-        // history.push("/crew")
-        // })
+// debugger
+        deletePost(event.target.id)
+        .then(() => {
+        history.push("/posts")
+        })
     }
     }
 
@@ -77,38 +79,41 @@ export const PostForm = () => {
 
         //if params has postId then UPDATE else ADD
         if (postId){
-        //PUT - update
-        // updateCrew({
-        //     id: post.id,
-        //     firstName: post.firstName,
-        //     lastName: post.lastName,
-        //     title: post.title,
-        //     crewTypeId: parseInt(post.crewTypeId),
-        //     available: post.available
-        // })
-        // .then(() => history.push(`/crew`))
-        }else {
-        //POST - add
-            // debugger
-    
-            var dateObj = new Date();
-            var month = dateObj.getUTCMonth() + 1; //months from 1-12
-            var day = dateObj.getUTCDate();
-            var year = dateObj.getUTCFullYear();
-            let newdate = year + "/" + month + "/" + day;
-
-        addPost({
-            user_id: post.user_id,
+        // PUT - update
+        updatePost({
+            id: post.id,
+            user_id: post.userId,
             title: post.title,
             content: post.content,
-            category_id: post.category_id,
-            publication_date: newdate,
-            approved: post.approved
+            image_url: post.imageUrl,
+            category_id: post.categoryId
+        })
+        .then(() => history.push(`/posts/detail/${post.id}`))
+        }else {
+        //POST - add
+        
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        let newdate = year + "/" + month + "/" + day;
+        
+        // debugger
+        addPost({
+            user_id: post.userId,
+            title: post.title,
+            content: post.content,
+            image_url: post.imageUrl,
+            category_id: post.categoryId,
+            publication_date: newdate
+            // approved: post.approved
         })
         .then(setPost({  //reset state obj as blank to zero out add form
             title: "",
             content: "",
-            available: true
+            image_url: "",
+            category_id: 0
+            // available: true
         }))
         .then(setIsLoading(false))
         .then(() => history.push("/posts"))
@@ -160,9 +165,19 @@ export const PostForm = () => {
         </fieldset>
 
         <fieldset>
+        <div className="form-group">
+            <label htmlFor="image_url">Image: </label>
+            <input type="text" id="imageUrl" required className="form-control"
+            placeholder="Image URL"
+            onChange={handleControlledInputChange}
+            value={post.imageUrl}/>
+        </div>
+        </fieldset>
+
+        <fieldset>
             <div className="form-group">
-            <label htmlFor="category_id">Category: </label>
-            <select value={post.category_id} id="category_id" className="form-control" 
+            <label htmlFor="categoryId">Category: </label>
+            <select value={post.categoryId} id="categoryId" className="form-control" 
             onChange={handleControlledInputChange}>
                 <option value="0">Select a Category</option>
                 {categories.map(l => (
@@ -174,7 +189,7 @@ export const PostForm = () => {
             </div>
         </fieldset>
 
-        <fieldset>
+        {/* <fieldset>
         <div className="form-group">
         
         <label htmlFor="approved">Approved:&nbsp;</label>
@@ -187,7 +202,7 @@ export const PostForm = () => {
         />
         
         </div>
-        </fieldset>
+        </fieldset> */}
 
         <button className=""
         type="submit"

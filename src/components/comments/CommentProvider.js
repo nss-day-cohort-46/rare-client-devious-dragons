@@ -23,13 +23,19 @@ export const CommentProvider = (props) => {
         })
         .then(getComments)
     }
+
+    const getCommentsByPostId = (postId) =>{
+        return fetch(`http://localhost:8088/comments?postId=${postId}`)
+        .then(res => res.json())
+    }
+    
     const getCommentById = (id) => {
         return fetch(`http://localhost:8088/comments/${id}`)
             .then(res => res.json())
     }
 
     const deleteComment = commentId => {
-        return fetch(`http://localhost:8088/Comments/${commentId}`, {
+        return fetch(`http://localhost:8088/comments/${commentId}`, {
             method: "DELETE"
         })
             .then(getComments)
@@ -54,7 +60,7 @@ export const CommentProvider = (props) => {
     */
     return (
         <CommentContext.Provider value={{
-            comments, getComments, addComment, getCommentById, updateComment, deleteComment
+            comments, getComments, addComment, getCommentById, updateComment, deleteComment, getCommentsByPostId
         }}>
             {props.children}
         </CommentContext.Provider>
