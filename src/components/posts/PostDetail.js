@@ -16,7 +16,7 @@ export const PostDetail = () => {
         .then((res) => {
             setPostDetail(res)
         })
-    }, [])
+    }, [postId])
 
 
     return (
@@ -32,7 +32,7 @@ export const PostDetail = () => {
         <div className="manage_tags">
             { userId === postDetail.userId ?
                 <section>
-                    <div>Tags: {postDetail.tags.map(tag => tag.label).join(", ")}</div>
+                    <div>Tags: {postDetail.postTags.map(tags => tags.tag.label).join(", ")}</div>
                 <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button></section>
             : <></>}  
         </div>
