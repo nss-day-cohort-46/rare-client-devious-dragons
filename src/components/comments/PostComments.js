@@ -5,13 +5,13 @@ import { CommentContext } from './CommentProvider'
 
 
 export const PostComments = props => {
-    const { getCommentsByPostId } = useContext(CommentContext)
-    const [postComments, setPostComments] = useState([])
+    const { getCommentsByPostId, postComments, setPostComments } = useContext(CommentContext)
+    
     const { postId } = useParams()
     
     useEffect(() => {
         getCommentsByPostId(postId)
-        .then((comments)=> setPostComments(comments))
+        // .then((comments)=> setPostComments(comments))
     }, [])
 
     return(
