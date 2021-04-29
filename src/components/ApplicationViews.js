@@ -64,16 +64,12 @@ export const ApplicationViews = () => {
                                 <PostList />
                             </Route>
 
-                            <TagProvider>
-                                <Route exact path="/posts/detail/:postId(\d+)/tags">
-                                    <PostTags />
-                                </Route>
-                            </TagProvider>
 
                             {/* //==================================Routes for Categories====================================// */}
                             <Route exact path="/categories">
                                 <CategoryList />
                             </Route>
+                        
 
                             <Route path="/categories/create">
                                 <CategoryForm />
@@ -81,10 +77,17 @@ export const ApplicationViews = () => {
 
                             {/* //==================================Routes for Tags====================================// */}
                             <TagProvider>
+                            
+                                <Route exact path="/posts/detail/:postId(\d+)/tags">
+                                    <PostTags />
+                                </Route>
                                 <Route exact path="/tags">
                                     <TagList />
                                 </Route>
                                 <Route path="/tags/create">
+                                    <CreateTag />
+                                </Route>
+                                <Route path="/tags/edit/:tagId(\d+)">
                                     <CreateTag />
                                 </Route>
                             </TagProvider>
