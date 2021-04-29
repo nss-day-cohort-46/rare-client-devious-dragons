@@ -4,10 +4,12 @@ import { TagContext } from './TagProvider'
 
 export const PostTags = () => {
     const {tags, getTags, addPostTags} = useContext(TagContext)
+    const {getPostById} = useContext(PostTags)
    
 
     useEffect(() => {
-        getTags()      
+        getTags() 
+        .then(getPostById(postId))     
     }, [])
 
     const {postId} = useParams()
@@ -49,12 +51,13 @@ export const PostTags = () => {
         <>
             <h2>Choose from the following tags</h2>
             <section className="tag_select">
-                <div>{tags.map(t => <div><input type="checkbox" name ={`tag`} id="tagId" onChange={handleTagChange} value={t.id}></input><label htmlFor="tagId">{t.label}</label></div>)}</div>
+                <div>{tags.map(t => <div key ={t.id}><input type="checkbox" name ={`tag`} id="tagId" onChange={handleTagChange} value={t.id}></input><label htmlFor="tagId">{t.label}</label></div>)}</div>
                 <button className="save_postTag" onClick ={event => {
                     event.preventDefault()
                     saveTagPost()
                 }}>Save Tags to Post</button>
             </section>
+            <section className="relatedTags">{posts.map(ptag => ptag.tags}</section>
         </>
     )
 }

@@ -4,6 +4,7 @@ export const TagContext = createContext()
 
 export const TagProvider = props => {
     const [tags, setTags] = useState([])
+
     
     
     const getTags = () => {
@@ -69,7 +70,7 @@ export const TagProvider = props => {
 
     return (
         <TagContext.Provider value={{
-            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById
+            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById,
         }}>
             {props.children}
         </TagContext.Provider>
