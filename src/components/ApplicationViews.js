@@ -25,6 +25,8 @@ import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
+import { ReactionProvider } from "./reactions/ReactionProvider"
+import { ReactionList } from "./reactions/ReactionList"
 
 
 
@@ -107,6 +109,13 @@ export const ApplicationViews = () => {
                                 <Route exact path="/users/:userId(\d+)">
                                     <UserDetail />
                                 </Route>
+
+                                {/* //==================================Routes for Reactions====================================// */}
+                                <ReactionProvider>
+                                    <Route exact path="/posts/details/:postId(\d+)/reactions">
+                                        <ReactionList />
+                                    </Route>
+                                </ReactionProvider>
 
                             </SubscriptionProvider>
                         </UserProvider>
