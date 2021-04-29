@@ -4,7 +4,7 @@ export const TagContext = createContext()
 
 export const TagProvider = props => {
     const [tags, setTags] = useState([])
-    const [tagById, setTagById] = useState({})
+    
     
     const getTags = () => {
         return fetch(`http://localhost:8088/tags`)
@@ -63,13 +63,13 @@ export const TagProvider = props => {
       const getTagById = (id) => {
         return fetch(`http://localhost:8088/tags/${id}`)
             .then(res => res.json())
-            .then(setTagById)
+            
     }
 
 
     return (
         <TagContext.Provider value={{
-            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById, tagById
+            tags, getTags, getPostTags, addTag, addPostTags, tagDelete, updateTag, getTagById
         }}>
             {props.children}
         </TagContext.Provider>
