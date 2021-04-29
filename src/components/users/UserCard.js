@@ -3,7 +3,7 @@ import { useHistory } from 'react-router'
 import { SubscriptionContext } from '../subscriptions/SubscriptionProvider'
 import './UserCard.css'
 
-export const UserCard = ({ user, subscribed, subscription, isSelf }) => {
+export const UserCard = ({ user, subscription, isSelf }) => {
     const history = useHistory()
     const { addSubscription, deleteSubscription } = useContext(SubscriptionContext)
     const [cardSubscription, setCardSubscription] = useState({})
@@ -30,7 +30,7 @@ export const UserCard = ({ user, subscribed, subscription, isSelf }) => {
     }
 
     useEffect(() => {
-        setCardSubscription(subscribed)
+        if (subscription) setCardSubscription(subscription)
     }, [])
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export const UserCard = ({ user, subscribed, subscription, isSelf }) => {
             {/* ternary - if the user card belongs to the current user, return "this is you", if not, show buttons */}
             {/* ternary - if not subscrubed, show subscribe button, else show unsub button */}
             {isSelf ?
-                <p className="thisIsYou">this is you!</p>
+                <p className="thisIsYou">it's you!</p>
                 :
                 Object.keys(cardSubscription).length ?
                     <button onClick={handleUnsubscribe} disabled={isLoading} className="unsubscribeButton" id={"unsubscribeButton--" + user.id}>Unsubscibe</button>

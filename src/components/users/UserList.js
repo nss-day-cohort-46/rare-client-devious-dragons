@@ -31,22 +31,14 @@ export const UserList = () => {
             <h1> Look at <a href="https://www.youtube.com/watch?v=NsLKQTh-Bqo">allllll those</a> Users</h1>
             {
                 sortedUsers.map(user => {
+                    // make sure we can't subscribe to ourselves
                     let isSelf = (user.id === userId)
-                    
-                    let subscribed
-                    // filter for user's subscriptions
+
+                    // Find the subscription between the user and the author, if there is one
                     const userSubs = subscriptions.filter(sub => sub.followerId === userId)
-                    
-                    // Is the current user subscribed to THIS user?
                     let subscription = userSubs.find(sub => sub.authorId === user.id)
-                    debugger
-                    if (subscription || userId === user.id) {
-                        subscribed = true
-                    } else {
-                        subscribed = false
-                    }
-                    console.log(subscribed)
-                    return <UserCard key={user.id} user={user} subscribed={subscribed} subscription={subscription} isSelf={isSelf}/>
+
+                    return <UserCard key={user.id} user={user} subscription={subscription} isSelf={isSelf}/>
                 })
             }
         </section>
