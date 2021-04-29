@@ -24,6 +24,7 @@ import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
+import { PostSearch } from "./posts/PostSearch"
 
 
 
@@ -42,6 +43,7 @@ export const ApplicationViews = () => {
 
                             {/* //==================================Routes for Posts====================================// */}
                             <Route exact path="/posts">
+                                <PostSearch />
                                 <PostList />
                             </Route>
 

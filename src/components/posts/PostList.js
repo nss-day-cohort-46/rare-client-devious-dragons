@@ -7,12 +7,14 @@ import { PostContext } from './PostProvider'
 
 
 export const PostList = props => {
-    const { posts, getPosts } = useContext(PostContext)
+
+    const { posts, getPosts, searchTerms } = useContext(PostContext)
     const [userPosts, setUserPosts] = useState([])
     const [categoryIdValue, setCategoryIdValue ] = useState(0)
     const [userIdValue, setUserIdValue ] = useState(0)
     const userId = parseInt(localStorage.getItem(`rare_user_id`))
     const history = useHistory()
+    const [ filteredPosts, setFiltered ] = useState([])
 
     //=========================to be replaced with category fetch======================//
     const { categories, getCategories } = useContext(CategoryContext)
@@ -24,6 +26,16 @@ export const PostList = props => {
         .then(getAllUsers())
         .then(getPosts())
     }, [])
+
+    useEffect(() => {
+        if (searchTerms !== "") {
+            const subset = posts.filter(post => post.title.toLowerCase().includes(searchTerms.toLowerCase()))
+            setFiltered(subset)
+        } else {
+            // If the search field is blank, display all animals
+            setFiltered(posts)
+        }
+        }, [searchTerms, posts])
 
     useEffect(() => {
         // sort posts by date
