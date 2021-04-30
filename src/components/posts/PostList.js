@@ -127,23 +127,24 @@ export const PostList = props => {
                 </fieldset>
 
                 <div>OR</div>
-
-                <fieldset>
-                    <div className="form-group">
-                        {/* <label htmlFor="categoryId">Category: </label> */}
-                        <select value={categoryIdValue} id="categoryId" className="form-control"
-                            onChange={handleControlledInputChange}>
-                            <option value="0">All Categories</option>
-                            {categories.map(l => (
-                                <option key={l.id} value={l.id}>
-                                    {l.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </fieldset>
             </section>
             }
+
+            <fieldset>
+                <div className="form-group">
+                    {/* <label htmlFor="categoryId">Category: </label> */}
+                    <select value={categoryIdValue} id="categoryId" className="form-control"
+                        onChange={handleControlledInputChange}>
+                        <option value="0">All Categories</option>
+                        {categories.map(l => (
+                            <option key={l.id} value={l.id}>
+                                {l.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+
 
 
 
