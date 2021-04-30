@@ -26,7 +26,7 @@ export const ReactionProvider = props => {
 
     const getPostReactions = () => {
         return fetch(`http://localhost:8088/postReactions`)
-            .then(res => res.j)
+            .then(res => res.json())
             .then(setPostReact)
     }
     

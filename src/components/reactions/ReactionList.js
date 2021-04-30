@@ -23,8 +23,8 @@ export const ReactionList =() => {
     const handleReactionClick = (event) => {
         const newReaction = {...reaction}
         newReaction[event.target.id] = parseInt(event.target.value)
-        setReaction(newReaction)
-        addPostReaction(reaction)     
+        // setReaction(newReaction)
+        addPostReaction(newReaction)     
       }
     
 

@@ -3,21 +3,31 @@ import { useHistory, useParams } from 'react-router'
 import { PostTags } from '../tags/PostTags';
 import { PostContext } from './PostProvider'
 import { Link } from 'react-router-dom'
-import {ReactionList} from '../reactions/ReactionList'
+import { ReactionList } from '../reactions/ReactionList'
+import { ReactionContext } from '../reactions/ReactionProvider';
+import './PostDetail.css'
 
 export const PostDetail = () => {
-    const { getPostById } = useContext(PostContext);
+    const { getPostById } = useContext(PostContext)
+    const { reactions, getReactions, postReact, getPostReactions } = useContext(ReactionContext)
+    const [thisPostsReactions, setThisPostsReactions] = useState([])
     const [postDetail, setPostDetail] = useState({})
     const userId = parseInt(localStorage.getItem(`rare_user_id`))
-    const {postId} = useParams();
+    const { postId } = useParams();
     const history = useHistory();
 
     useEffect(() => {
+        getPostReactions()
+        getReactions()
         getPostById(postId)
-        .then((res) => {
-            setPostDetail(res)
-        })
+            .then((res) => {
+                setPostDetail(res)
+            })
     }, [postId])
+
+    useEffect(() => {
+        setThisPostsReactions(postReact.filter(pR => pR.postId === parseInt(postId)))
+    }, [postReact])
 
 
     return (
@@ -30,6 +40,18 @@ export const PostDetail = () => {
             <img src={postDetail.imageUrl} alt="article_image" width="25%" />
             <section className="content">{postDetail.content}</section>
         </article>
+
+        <div className="reactionCounts">
+                {
+                    reactions.map(react => {
+                        const thisPostReaction = thisPostsReactions.filter(pr => react.id === pr.reactionId)
+                        return <section className="reactionCounts">
+                            <img src={react.imageUrl} />
+                            <p>{thisPostReaction.length}</p>
+                        </section>
+                    })
+                }
+        </div>
         
         <div className="manage_tags">
             { userId === postDetail.userId ?
@@ -40,10 +62,11 @@ export const PostDetail = () => {
         </div>
 
         <div>
-            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Crate a reaction</button>
+            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Create a reaction</button>
         </div>
     
     </>
 )
+
 
 }
