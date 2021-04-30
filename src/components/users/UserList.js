@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { SubscriptionContext } from '../subscriptions/SubscriptionProvider'
 import { UserCard } from './UserCard'
 import { UserContext } from './UserProvider'
-
+import './UserCard.css'
 export const UserList = () => {
     const { users, getAllUsers } = useContext(UserContext)
     const { subscriptions, getSubscriptions } = useContext(SubscriptionContext)

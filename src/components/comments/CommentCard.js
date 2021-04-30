@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
 import { CommentContext } from './CommentProvider'
-
+import '../posts/PostCard.css'
 export const CommentCard = ({ comment }) => {
     const history = useHistory()
     const { deleteComment } = useContext(CommentContext)

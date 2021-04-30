@@ -24,6 +24,7 @@ import { UserProvider } from "./users/UserProvider"
 import { UserList } from "./users/UserList"
 import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
+import { PostSearch } from "./posts/PostSearch"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
 import { ReactionProvider } from "./reactions/ReactionProvider"
 import { ReactionList } from "./reactions/ReactionList"
@@ -45,8 +46,15 @@ export const ApplicationViews = () => {
                             <SubscriptionProvider>
                                 <ReactionProvider>
 
+                                {/* //==================================Homepage====================================// */}
+                                <Route exact path="/">
+                                    <PostSearch />
+                                    <PostList />
+                                </Route>
+
                                 {/* //==================================Routes for Posts====================================// */}
                                 <Route exact path="/posts">
+                                    <PostSearch />
                                     <PostList />
                                 </Route>
 
@@ -66,11 +74,12 @@ export const ApplicationViews = () => {
                                     <PostForm />
                                 </Route>
 
-                            <Route exact path="/posts/detail/editcomment/:commentId(\d+)">
-                                <CommentForm />
-                            </Route>
+                                <Route exact path="/posts/detail/editcomment/:commentId(\d+)">
+                                    <CommentForm />
+                                </Route>
 
                                 <Route exact path="/myposts">
+                                    <PostSearch />
                                     <PostList />
                                 </Route>
 

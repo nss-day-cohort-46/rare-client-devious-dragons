@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
 /*Typography
 --------------------------------------------------------------*/
-
+root, body{
+	background-color: #c89f9c;
+}
 body, button, input, select, textarea {
     color: #404040;
     font-family: "Comfortaa", Arial, sans-serif;
@@ -12,7 +15,7 @@ body, button, input, select, textarea {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Patua One", serif;
+    font-family: 'DM Serif Display', serif;
     letter-spacing: 2px;
 }
 
@@ -22,9 +25,9 @@ code {
 }
 
 .fakeLink {
-    color: -webkit-link;
+    color: #b36a5e;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     background: none!important;
     border: none;
     cursor: pointer;
@@ -32,6 +35,7 @@ code {
 
 .fakeLink:hover {
     font-weight: bold;
+	color:#C89F9C;
 }
 
 .nav-item {
