@@ -40,7 +40,7 @@ export const PostDetail = () => {
         </div>
 
         <div>
-            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Add your reaction</button>
+            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Crate a reaction</button>
         </div>
     
     </>
