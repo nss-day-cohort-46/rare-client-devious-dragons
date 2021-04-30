@@ -42,16 +42,16 @@ export const ReactionProvider = props => {
                 
     }
 
-    const getReactionsByReactionId = (reactionId) =>{
-        return fetch(`http://localhost:8088/postReaction?reaction=${rectionId}`)
-        .then(res => res.json())
-        .then(setPostComments)
-    }
+    // const getReactionsByReactionId = (reactionId) =>{
+    //     return fetch(`http://localhost:8088/postReaction?reaction=${rectionId}`)
+    //     .then(res => res.json())
+    //     .then(setPostComments)
+    // }
 
 
     return (
         <ReactionContext.Provider value={{
-            reactions, getReactions, addReaction, getPostReactions, postReact, addPostReaction, getReactionByReactionId
+            reactions, getReactions, addReaction, getPostReactions, postReact, addPostReaction
         }}>
             {props.children}
         </ReactionContext.Provider>
