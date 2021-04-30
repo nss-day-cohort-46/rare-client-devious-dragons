@@ -26,6 +26,8 @@ import { UserDetail } from "./users/UserDetail"
 import { PostTags } from "./tags/PostTags"
 import { PostSearch } from "./posts/PostSearch"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
+import { ReactionProvider } from "./reactions/ReactionProvider"
+import { ReactionList } from "./reactions/ReactionList"
 
 
 
@@ -42,6 +44,7 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <UserProvider>
                             <SubscriptionProvider>
+                                <ReactionProvider>
 
                                 {/* //==================================Homepage====================================// */}
                                 <Route exact path="/">
@@ -61,6 +64,7 @@ export const ApplicationViews = () => {
 
                                 <Route exact path="/posts/detail/:postId(\d+)">
                                     <PostDetail />
+                                    <ReactionList />
                                     <CommentForm />
                                     <PostComments />
                                 </Route>
@@ -117,6 +121,13 @@ export const ApplicationViews = () => {
                                     <UserDetail />
                                 </Route>
 
+                                {/* //==================================Routes for Reactions====================================// */}
+                                
+                                    <Route path="/posts/details/:postId(\d+)/reactions">
+                                        <ReactionList />
+                                    </Route>
+                                
+                                </ReactionProvider>
                             </SubscriptionProvider>
                         </UserProvider>
                     </CommentProvider>

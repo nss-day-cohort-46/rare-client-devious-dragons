@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router'
 import { PostTags } from '../tags/PostTags';
 import { PostContext } from './PostProvider'
 import { Link } from 'react-router-dom'
+import {ReactionList} from '../reactions/ReactionList'
 
 export const PostDetail = () => {
     const { getPostById } = useContext(PostContext);
@@ -29,12 +30,17 @@ export const PostDetail = () => {
             <img src={postDetail.imageUrl} alt="article_image" width="25%" />
             <section className="content">{postDetail.content}</section>
         </article>
+        
         <div className="manage_tags">
             { userId === postDetail.userId ?
                 <section>
                     <div>Tags: {postDetail.postTags.map(tags => tags.tag.label).join(", ")}</div>
                 <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button></section>
             : <></>}  
+        </div>
+
+        <div>
+            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Add your reaction</button>
         </div>
     
     </>
