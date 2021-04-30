@@ -44,7 +44,6 @@ export const PostDetail = () => {
             <div className="reactionCounts">
                 {
                     reactions.map(react => {
-                        debugger
                         const thisPostReaction = thisPostsReactions.filter(pr => react.id === pr.reactionId)
                         return <section className="reactionCounts">
                             <img src={react.imageUrl} />
