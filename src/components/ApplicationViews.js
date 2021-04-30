@@ -43,6 +43,12 @@ export const ApplicationViews = () => {
                         <UserProvider>
                             <SubscriptionProvider>
 
+                                {/* //==================================Homepage====================================// */}
+                                <Route exact path="/">
+                                    <PostSearch />
+                                    <PostList />
+                                </Route>
+
                             {/* //==================================Routes for Posts====================================// */}
                                 <Route exact path="/posts">
                                     <PostSearch />
