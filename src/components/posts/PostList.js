@@ -60,7 +60,6 @@ export const PostList = props => {
         const userSubscriptions = subscriptions.filter(sub => sub.followerId === userId)
         const userAuthors = userSubscriptions.map(sub => sub.authorId)
         userAuthors.push(userId)
-        debugger
         userPosts.forEach(post => {
             if (userAuthors.includes(post.userId)) userSubscribedPosts.push(post)
         })
