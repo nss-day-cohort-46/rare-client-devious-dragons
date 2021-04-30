@@ -43,6 +43,7 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <UserProvider>
                             <SubscriptionProvider>
+                                <ReactionProvider>
 
                                 {/* //==================================Routes for Posts====================================// */}
                                 <Route exact path="/posts">
@@ -55,6 +56,7 @@ export const ApplicationViews = () => {
 
                                 <Route exact path="/posts/detail/:postId(\d+)">
                                     <PostDetail />
+                                    <ReactionList />
                                     <CommentForm />
                                     <PostComments />
                                 </Route>
@@ -111,12 +113,12 @@ export const ApplicationViews = () => {
                                 </Route>
 
                                 {/* //==================================Routes for Reactions====================================// */}
-                                <ReactionProvider>
-                                    <Route exact path="/posts/details/:postId(\d+)/reactions">
+                                
+                                    <Route path="/posts/details/:postId(\d+)/reactions">
                                         <ReactionList />
                                     </Route>
+                                
                                 </ReactionProvider>
-
                             </SubscriptionProvider>
                         </UserProvider>
                     </CommentProvider>

@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router'
 import { PostTags } from '../tags/PostTags';
 import { PostContext } from './PostProvider'
 import { Link } from 'react-router-dom'
+import {ReactionList} from '../reactions/ReactionList'
 
 export const PostDetail = () => {
     const { getPostById } = useContext(PostContext);

@@ -4,6 +4,7 @@ export const ReactionContext = createContext();
 
 export const ReactionProvider = props => {
     const [reactions, setReactions] = useState([])
+    const [postReact, setPostReact] = useState([])
 
     const getReactions = () => {
         return fetch(`http://localhost:8088/reactions`)
@@ -11,10 +12,40 @@ export const ReactionProvider = props => {
             .then(setReactions)
     }
 
+    const addReaction = tagObj => {
+        return fetch("http://localhost:8088/reactions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tagObj)
+        })
+        .then(getReactions)
+    }
+
+
+    const getPostReactions = () => {
+        return fetch(`http://localhost:8088/postReactions`)
+            .then(res => res.j)
+            .then(setPostReact)
+    }
+    
+    const addPostReaction = (reactObj) => {
+        return fetch(`http://localhost:8088/postReaction`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(reactObj)
+        })
+        .then(getPostReactions)
+                
+    }
+
 
     return (
         <ReactionContext.Provider value={{
-            reactions, getReactions
+            reactions, getReactions, addReaction, getPostReactions, postReact, addPostReaction
         }}>
             {props.children}
         </ReactionContext.Provider>
