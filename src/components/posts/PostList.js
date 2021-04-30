@@ -4,7 +4,7 @@ import { CategoryContext } from '../categories/CategoryProvider'
 import { UserContext } from '../users/UserProvider'
 import { PostCard } from './PostCard'
 import { PostContext } from './PostProvider'
-
+import './PostCard.css'
 
 export const PostList = props => {
 

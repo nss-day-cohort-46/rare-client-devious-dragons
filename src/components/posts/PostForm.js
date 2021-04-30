@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { CategoryContext } from "../categories/CategoryProvider";
 
 import { PostContext } from "./PostProvider";
-
+import './PostCard.css'
 export const PostForm = () => {
     const { addPost, getPostById, updatePost, deletePost } = useContext(PostContext)
     const { categories, getCategories } = useContext(CategoryContext)
