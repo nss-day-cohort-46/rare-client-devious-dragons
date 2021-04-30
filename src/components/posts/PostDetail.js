@@ -31,17 +31,17 @@ export const PostDetail = () => {
 
 
     return (
-        <>
-            <article className="post_detail">
-                <h1 className="title">{postDetail.title}</h1>
-                <Link to={`/posts/detail/edit/${postDetail.id}`}>EDIT</Link>
-                <h2 className="author">By: {postDetail.userId}</h2>
-                <h2 className="date">{postDetail.publicationDate}</h2>
-                <img src={postDetail.imageUrl} alt="article_image" width="25%" />
-                <section className="content">{postDetail.content}</section>
-            </article>
+    <>
+        <article className="post_detail">
+            <h1 className="title">{postDetail.title}</h1>
+            <Link to={`/posts/detail/edit/${postDetail.id}`}>EDIT</Link>
+            <h2 className="author">By: {postDetail.userId}</h2>
+            <h2 className= "date">{postDetail.publicationDate}</h2>
+            <img src={postDetail.imageUrl} alt="article_image" width="25%" />
+            <section className="content">{postDetail.content}</section>
+        </article>
 
-            <div className="reactionCounts">
+        <div className="reactionCounts">
                 {
                     reactions.map(react => {
                         const thisPostReaction = thisPostsReactions.filter(pr => react.id === pr.reactionId)
@@ -51,21 +51,22 @@ export const PostDetail = () => {
                         </section>
                     })
                 }
-            </div>
+        </div>
+        
+        <div className="manage_tags">
+            { userId === postDetail.userId ?
+                <section>
+                    <div>Tags: {postDetail.postTags.map(tags => tags.tag.label).join(", ")}</div>
+                <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button></section>
+            : <></>}  
+        </div>
 
-            <div className="manage_tags">
-                {userId === postDetail.userId ?
-                    <section>
-                        <div>Tags: {postDetail.postTags.map(tags => tags.tag.label).join(", ")}</div>
-                        <button className="post_tags" onClick={() => history.push(`/posts/detail/${postId}/tags`)}>Manage Tags</button></section>
-                    : <></>}
-            </div>
+        <div>
+            <button className="reaction_btn" onClick={()=> history.push(`/posts/details/${postId}/reactions`)}>Create a reaction</button>
+        </div>
+    
+    </>
+)
 
-            <div>
-                <button className="reaction_btn" onClick={() => history.push(`/posts/details/${postId}/reactions`)}>Add your reaction</button>
-            </div>
-
-        </>
-    )
 
 }

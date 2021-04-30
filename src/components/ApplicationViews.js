@@ -28,6 +28,7 @@ import { PostSearch } from "./posts/PostSearch"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
 import { ReactionProvider } from "./reactions/ReactionProvider"
 import { ReactionList } from "./reactions/ReactionList"
+import { CreateReaction } from "./reactions/createReaction"
 
 
 
@@ -124,7 +125,7 @@ export const ApplicationViews = () => {
                                 {/* //==================================Routes for Reactions====================================// */}
                                 
                                     <Route path="/posts/details/:postId(\d+)/reactions">
-                                        <ReactionList />
+                                        <CreateReaction/>
                                     </Route>
                                 
                                 </ReactionProvider>

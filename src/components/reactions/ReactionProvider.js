@@ -42,11 +42,7 @@ export const ReactionProvider = props => {
                 
     }
 
-    // const getReactionsByReactionId = (reactionId) =>{
-    //     return fetch(`http://localhost:8088/postReaction?reaction=${rectionId}`)
-    //     .then(res => res.json())
-    //     .then(setPostComments)
-    // }
+
 
 
     return (
