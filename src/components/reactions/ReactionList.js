@@ -24,8 +24,7 @@ export const ReactionList =() => {
         const newReaction = {...reaction}
         newReaction[event.target.id] = parseInt(event.target.value)
         setReaction(newReaction)
-        addPostReaction(reaction)
-           
+        addPostReaction(reaction)     
       }
     
 
@@ -33,7 +32,7 @@ export const ReactionList =() => {
     return(
         <>
             <h2>Reactions</h2>
-            <div>{reactions.map(react => <div key={react.id}>{countClicks} <button onClick={handleReactionClick} id="reactionId" value={react.id} key={react.id}><img key={react.id} src={react?.imageUrl} width="10%"/></button></div>)}</div>
+            <div>{reactions.map(react => <button onClick={handleReactionClick} id="reactionId" value={react.id} key={react.id}><img key={react.id} src={react?.imageUrl} width="10%"/></button>)}</div>
         </>
     )
 }
