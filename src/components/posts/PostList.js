@@ -5,7 +5,7 @@ import { SubscriptionContext } from '../subscriptions/SubscriptionProvider'
 import { UserContext } from '../users/UserProvider'
 import { PostCard } from './PostCard'
 import { PostContext } from './PostProvider'
-
+import './PostCard.css'
 
 export const PostList = props => {
 

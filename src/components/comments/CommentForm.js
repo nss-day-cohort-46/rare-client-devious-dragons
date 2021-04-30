@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CommentContext } from './CommentProvider'
 import { useHistory, useParams } from 'react-router-dom'
-
+import '../posts/PostCard.css'
 export const CommentForm = () => {
     const { addComment, getComments, getCommentById, updateComment, comments, getCommentsByPostId, PostComments, setPostComments } = useContext(CommentContext)
     const { postId, commentId } = useParams()
